@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask Hashing &ndash; {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Flask Hashing</a>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      {% if 'username' in session %}
+      <a class="nav-link" href="/logout">Logout</a>
+      {% else %}
+      <a class="nav-link" href="/login">Login</a>
+      {% endif %}
+    </li>
+  </ul>
+</nav>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      {% for msg in get_flashed_messages() %}
+      <div class="alert alert-info mt-3">{{ msg }}</div>
+      {% endfor %}
+
+      {% block content %}
+      <!-- put the content here -->
+      {% endblock %}
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
